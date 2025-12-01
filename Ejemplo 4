@@ -1,0 +1,40 @@
+# Sistema simple de inventario con clases y pickle
+
+import pickle
+import os
+
+# Definir clase Producto
+class Producto:
+    def __init__(self, nombre, precio, cantidad): self.nombre = nombre , self.precio = precio , self.cantidad = cantidad
+
+# Comprobar si existe inventario.pkl
+existe = os.path.exists("inventario.pkl")
+
+if existe == False:
+    print("El archivo inventario.pkl no existe , sorry :(")
+    print("Hemos creado un nuevo archivo inventario.pkl , tranqui ;)")
+    inventario = []
+    mas = input("¿Quieres meter algo en el archivo? Escribe si o no: ")
+    while mas == "si":
+        nombre = input("Escribe el nombre del producto que quieres añadir: ")
+        precio = float(input("Escribe el precio del producto añadido: "))
+        cantidad = int(input("Escribe la cantidad del producto añadido: "))
+        p = Producto(nombre, precio, cantidad)
+        inventario.append(p)
+        mas = input("¿Quieres meter algo en el archivo? Escribe si o no: ")
+
+    archivo = open("inventario.pkl", "wb")
+    pickle.dump(inventario, archivo)
+    archivo.close()
+    print("Hemos guardado tus productos en el archivo inventario.pkl , que no se te pierdan ;)")
+
+else:
+    archivo = open("inventario.pkl", "rb")
+    inventario = pickle.load(archivo)
+    archivo.close()
+    print("\nLos productos del inventario son :")
+    i = 0
+    while i < len(inventario):
+        prod = inventario[i]
+        print("Producto:", prod.nombre, "- Precio:", prod.precio, "- Cantidad:", prod.cantidad)
+        i = i + 1
