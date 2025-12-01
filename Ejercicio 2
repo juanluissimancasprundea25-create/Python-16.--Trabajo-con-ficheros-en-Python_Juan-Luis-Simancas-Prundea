@@ -1,0 +1,20 @@
+# Programa para registrar temperaturas diarias
+dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+temperaturas = []
+
+print("Escribeme la temperatura que ha habido de media en cada dia :")
+
+i = 0
+while i < len(dias):
+    temp = input("La temperatura del dia " + dias[i] + "es de : ")
+    temperaturas.append(temp)
+    i = i + 1
+archivo = open("temperaturas.txt", "w")
+
+j = 0
+while j < len(dias):
+    archivo.write(dias[j] + ": " + temperaturas[j] + "\n")
+    j = j + 1
+archivo.close()
+
+print("Hemos guardado todas las temperaturas en el archivo temepraturas.txt : )")
