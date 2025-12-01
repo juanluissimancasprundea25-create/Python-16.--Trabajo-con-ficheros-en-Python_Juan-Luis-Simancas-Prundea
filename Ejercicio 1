@@ -1,0 +1,14 @@
+# Programa para guardar nombres en un archivo
+nombres = []
+nombre = input("Escribe el nombre que quieres meter y para terminar escribe FIN: ")
+
+while nombre != "FIN":
+    nombres.append(nombre)
+    nombre = input("Escribe el nombre que quieres meter y para terminar escribe FIN: ")
+
+archivo = open("nombres.txt", "w")
+for n in nombres:
+    archivo.write(n + "\n")
+archivo.close()
+
+print("Hemos guardado los nombres que querias en el archivo nombres.txt")
