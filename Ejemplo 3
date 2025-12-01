@@ -1,0 +1,37 @@
+# Programa para guardar y cargar un diccionario de alumnos con pickle
+
+import pickle
+print("--- Registro de alumnos ---")
+print("Escribe el nombre y la nota del alumno que vas a meter y para finalizar escribe literalmente FIN")
+
+alumnos = {}
+nombre = input("Escribe el nombre del alumno: ")
+while nombre != "FIN":
+    nota = input("Escribe la nota del alumno: ")
+    alumnos[nombre] = float(nota)
+    nombre = input("Escribe el nombre del alumno: ")
+
+# Guardar el diccionario en un archivo .pkl
+archivo = open("alumnos.pkl", "wb")
+pickle.dump(alumnos, archivo)
+archivo.close()
+
+print("Hemos guardado el diccionario en una archivo alumnos.pkl")
+
+#Cargar y mostrar datos
+
+archivo2 = open("alumnos.pkl", "rb")
+datos = pickle.load(archivo2)
+archivo2.close()
+print("\nLa lista de alumnos es:")
+print(datos)
+suma = 0
+cantidad = 0
+for nota in datos.values():
+    suma = suma + nota
+    cantidad = cantidad + 1
+if cantidad > 0:
+    media = suma / cantidad
+    print("\nLa media de las notas son:", media)
+else:
+    print("\nNo has metido ninguna nota a los alumnos ")
